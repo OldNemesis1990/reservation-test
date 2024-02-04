@@ -9,5 +9,5 @@ class ResortAmenities extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'icon_path'];
+    protected $fillable = ['title', 'icon_path', 'order'];
 }
