@@ -18,6 +18,12 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
+
+            // Add unique constraints for contact_number and id_number
+            $table->string('contact_number')->unique();
+            $table->string('id_number')->unique();
+            $table->boolean('activated')->default(false);
+
             $table->timestamps();
         });
     }

@@ -22,6 +22,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'contact_number',
+        'id_number',
+        'activated'
     ];
 
     /**
@@ -43,4 +46,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function reviews() {
+        return $this->hasMany(UserReview::class);
+    }
 }
