@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('resort_amenities', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->string('icon_path')->nullable();
         });
     }
 
