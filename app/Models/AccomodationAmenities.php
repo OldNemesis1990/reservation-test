@@ -10,4 +10,9 @@ class AccomodationAmenities extends Model
     use HasFactory;
 
     protected $fillable = ['title', 'icon_path'];
+    
+    // model has many configuration
+    public function configurations() {
+        return $this->hasMany(AccommodationAmenityConfiguration::class);
+    }
 }
