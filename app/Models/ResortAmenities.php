@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class ResortAmenities extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['title'];
 }
