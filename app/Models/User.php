@@ -24,6 +24,7 @@ class User extends Authenticatable
         'password',
         'contact_number',
         'id_number',
+        'passport_number',
         'activated'
     ];
 

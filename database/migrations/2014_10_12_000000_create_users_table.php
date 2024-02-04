@@ -21,7 +21,8 @@ return new class extends Migration
 
             // Add unique constraints for contact_number and id_number
             $table->string('contact_number')->unique();
-            $table->string('id_number')->unique();
+            $table->string('id_number')->unique()->nullable();
+            $table->string('passport_number')->unique()->nullable();
             $table->boolean('activated')->default(false);
 
             $table->timestamps();
