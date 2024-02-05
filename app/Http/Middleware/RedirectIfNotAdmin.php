@@ -30,15 +30,15 @@ class RedirectIfNotAdmin
                     switch ($role) {
                         case 'guest':
                         case 'vip':
-                            return redirect(RouteServiceProvider::PROFILE);
+                            abort(401);
                         case 'admin':
                             return $next($request);
                         case 'manager':
                         case 'clerk':
-                            return redirect(RouteServiceProvider::RESERVATIONS);
+                            abort(401);
                         default:
                             // Default redirection if the user has no role or unrecognized role
-                            return redirect(RouteServiceProvider::PROFILE);
+                            abort(401);
                     }
 
                     // Redirect to /dashboard/profile if the user does not have the specified roles

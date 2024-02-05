@@ -27,13 +27,17 @@ class RedirectIfAuthenticated
                     $role = $user->roles->pluck('name')->first();
 
                     // Redirect based on user role
-                    if($role == 'guest' || $role == 'vip') {
-                        return redirect(RouteServiceProvider::PROFILE);
-                    }
-                    elseif($role == 'admin' || $role == 'manager' || $role == 'clerk') {
-                        return redirect(RouteServiceProvider::RESERVATIONS);
-                    } else {
-                        return redirect(RouteServiceProvider::PROFILE);
+                    switch ($role) {
+                        case 'guest':
+                        case 'vip':
+                            return redirect(RouteServiceProvider::PROFILE);
+                        case 'admin':
+                        case 'manager':
+                        case 'clerk':
+                            return redirect(RouteServiceProvider::RESERVATIONS);
+                        default:
+                            // Default redirection if the user has no role or unrecognized role
+                            abort(401);
                     }
                 }
             }
