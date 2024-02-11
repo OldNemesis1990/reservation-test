@@ -21,6 +21,8 @@ class RouteServiceProvider extends ServiceProvider
     public const PROFILE = '/dashboard/profile';
     public const RESERVATIONS = '/dashboard/reservations';
     public const USERS = '/dashboard/users';
+    public const STAFFDASHBOARD = '/staff-dashboard';
+    public const GUESTDASHBOARD = '/guest-dashboard';
 
 
     /**

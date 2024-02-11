@@ -30,11 +30,11 @@ class RedirectIfAuthenticated
                     switch ($role) {
                         case 'guest':
                         case 'vip':
-                            return redirect(RouteServiceProvider::PROFILE);
+                            return redirect(RouteServiceProvider::GUESTDASHBOARD);
                         case 'admin':
                         case 'manager':
                         case 'clerk':
-                            return redirect(RouteServiceProvider::RESERVATIONS);
+                            return redirect(RouteServiceProvider::STAFFDASHBOARD);
                         default:
                             // Default redirection if the user has no role or unrecognized role
                             abort(401);
