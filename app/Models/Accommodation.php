@@ -9,7 +9,7 @@ class Accommodation extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'description', 'price_per_person'];
+    protected $fillable = ['title', 'description', 'price_per_adult', 'price_per_child', 'user_id', 'amenities'];
 
     // model has many bookings
     public function bookings() {
@@ -19,10 +19,6 @@ class Accommodation extends Model
     // model has many images
     public function images() {
         return $this->hasMany(AccommodationImagePath::class);
-    }
-
-    public function amenities() {
-        return $this->hasMany(AccommodationAmenityConfiguration::class);
     }
 
     public function ratings() {

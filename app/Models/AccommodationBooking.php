@@ -9,7 +9,7 @@ class AccommodationBooking extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['accommodation_id', 'user_id', 'status', 'check_in', 'time_check_in'];
+    protected $fillable = ['accommodation_id', 'user_id', 'status', 'check_in', 'time_check_in', 'start_date', 'end_date', 'amount_of_days', 'total', 'note'];
 
     // booking belongs to the accommodation model
     public function accommodation()

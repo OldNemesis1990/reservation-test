@@ -20,14 +20,17 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             
             $table->enum('status', ['pending', 'paid']);
-            $table->boolean('resort_approval')->default(false);
             $table->boolean('check_in')->default(false);
             $table->dateTime('time_check_in')->useCurrent();
             $table->date('start_date');
             $table->date('end_date');
             $table->integer('amount_of_days');
+            $table->decimal('total', 10, 2);
+            $table->text('note');
             
             $table->timestamps();
+
+            $table->unique(['start_date', 'end_date', 'accommodation_id'], 'reservedDates');
         });
     }
 

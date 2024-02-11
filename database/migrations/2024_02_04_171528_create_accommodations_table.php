@@ -15,7 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('description');
-            $table->decimal('price_per_person', 10, 2);
+            $table->decimal('price_per_adult', 10, 2);
+            $table->decimal('price_per_child', 10, 2);
+            $table->json('amenities')->nullable();
             
             // Add user_id to track the creator
             $table->unsignedBigInteger('user_id');
