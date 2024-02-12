@@ -59,10 +59,11 @@ Route::middleware(['auth', 'redirectIfNotStaff'])->group( function() {
     ]);
     /** ======== RESERVATIONS ROUTES ======== */
     Route::resource('/dashboard/reservations', ReservationController::class)
-    ->only(['index', 'create', 'show', 'store', 'edit', 'update', 'destroy']); // Specify only the needed routes
+    ->only(['index', 'create', 'show', 'store', 'edit', 'update']); // Specify only the needed routes
     Route::post('/dashboard/search-reservation', [ReservationController::class, 'searchReservation'])->name('dashboard.reservation.search');
     Route::post('/dashboard/search-idnumber', [ReservationController::class, 'idNumber'])->name('dashboard.reservation.idnumber');
     Route::post('/dashboard/reservation/check-in', [ReservationController::class, 'checkIn'])->name('dashboard.reservation.checkIn');
+    Route::post('/dashboard/reservation/destroy', [ReservationController::class, 'destroy'] )->name('dashboard.reservation.destroy');
 });
 
 // Routes for senior staff members
