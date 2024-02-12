@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\Redirect;
 use App\Models\User;
 use App\Models\AccommodationBooking;
 use App\Models\Accommodation;
+//trigger an email
+use App\Jobs\SendEmailJob;
+use App\Mail\ReservationCreated;
 
 use Log;
 
@@ -51,9 +54,19 @@ class AccommodationBookingController extends Controller
                 'total' => $request->total,
                 'note' => $request->note,
             ]);
-        
+
+            
             // Save the booking to the database
             $booking->save();
+            $data = [];
+            $data['user'] = User::find($request->user_id)->get();
+            $data['accommodation'] = Accommodation::find($request->accommodation_id)->get();
+            $data['booking'] = $booking;
+            $template = new ReservationCreated($data);
+
+            Log::info($data['user'][0]->id);
+
+            SendEmailJob::dispatch($data, $template);
 
             return response()->json(['message' => 'Reservation Created']);
         } else {
@@ -78,6 +91,16 @@ class AccommodationBookingController extends Controller
                 'note' => $request->note,
             ]);
 
+            $data = [];
+            $data['user'] = User::find($user->id)->get();
+            $data['accommodation'] = Accommodation::find($request->accommodation_id)->get();
+            $data['booking'] = $booking;
+            $template = new ReservationCreated($data);
+
+            // Log::info($data['user'][0]->name);
+
+            SendEmailJob::dispatch($data, $template);
+
             $booking->save();
 
             return response()->json(['message' => 'User and Reservation Created']);
@@ -94,6 +117,7 @@ class AccommodationBookingController extends Controller
             }
 
             $reservation->check_in = $reservation->check_in == 0 ? 1 : 0;
+            $reservation->time_check_in = date('Y-m-d H:i:s', strtotime('+2 hours'));
             $reservation->save();
     
             // Retrieve the updated list of reservations
@@ -116,8 +140,15 @@ class AccommodationBookingController extends Controller
 
     }
     
-    public function destroy() {
+    public function destroy(Request $request) {
+        $reservation = AccommodationBooking::findOrFail($request->id);
 
+        $reservation->delete();
+
+        $reservations = AccommodationBooking::with(['accommodation', 'user'])->get();
+        return response()->json([
+            'reservations' => $reservations
+        ]);
     }
 
     public function searchReservation() {
