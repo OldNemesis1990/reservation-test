@@ -30,10 +30,11 @@ The Skedonk reservation platform allows administrators or managers to create acc
 
 - Roles and Permissions via Spatie.
 - Accommodations Creation via admin or managers.
-- Reservation creation via clerk.
+- Reservation creation, more information, Check in trigger with time in date via staff.
 - Relationships between models have been established.
 - Migrations are set up to Cascade on Delete where required.
 - Dynamic path in storage is established on accommodation creation or image upload.
+- Dispatch jobs emails with custom templates
 
 ## How to Use
 
@@ -52,10 +53,9 @@ The Skedonk reservation platform allows administrators or managers to create acc
 
 - Accommodation single view.
 - Accommodation update.
-- Reservation update, delete, show details.
+- Reservation update.
 - Create, Update, Delete, Read Staff Members.
 - Unauthorized accommodation view for guests to create their own reservation.
-- Jobs and Events for email triggers based on status.
 - Show occupied dates on reservation calendar.
 - Reservation Filter.
 - Accommodation availability filter.
@@ -66,10 +66,9 @@ The Skedonk reservation platform allows administrators or managers to create acc
 
 - Accommodation single view.
 - Accommodation update.
-- Reservation update, delete, show details.
+- Reservation update.
 - Create, Update, Delete, Read Staff Members.
 - Unauthorized accommodation view for guests to create their own reservation.
-- Jobs and Events for email triggers based on status.
 - Show occupied dates on reservation calendar.
 - Reservation Filter.
 - Accommodation availability filter.
