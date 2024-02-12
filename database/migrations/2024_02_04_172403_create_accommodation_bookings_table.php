@@ -26,7 +26,7 @@ return new class extends Migration
             $table->date('end_date');
             $table->integer('amount_of_days');
             $table->decimal('total', 10, 2);
-            $table->text('note');
+            $table->text('note')->nullable();
             
             $table->timestamps();
 
