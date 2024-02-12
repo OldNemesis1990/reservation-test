@@ -81,13 +81,10 @@
         formData.append('amount_of_days', timeDifference)
         formData.append('total', bookingForm.totalAmount)
         formData.append('note', bookingForm.note)
-        await axios.post(route('reservations.store'), formData)
+        axios.post(route('reservations.store'), formData)
         .then( (response) => {
-          console.log(response)
-        })
-        .error( (err) => {
-          console.log(err)
-        } );
+          Inertia.visit(route('reservations.index'))
+        });
 
       } catch (error) {
         console.error('Error submitting form:', error);

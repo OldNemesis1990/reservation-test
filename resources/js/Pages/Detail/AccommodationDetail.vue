@@ -53,10 +53,6 @@ export default {
         // Handle delete logic, e.g., show confirmation modal
         console.log('Delete accommodation:', id);
     },
-    isAdminOrManager() {
-        // Replace with your actual logic to check if the user is admin or manager
-        return true; // Example: Always return true for demonstration purposes
-    },
   },
 };
 </script>
